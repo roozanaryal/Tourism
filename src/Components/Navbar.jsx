@@ -4,8 +4,8 @@ import logo from '../assets/logo.png'
 export default function Navbar() {
   return (
       <>
-          <nav>
-              <ul className='flex justify-start items-center px-24 gap-4 h-16 '>
+          <nav className='text-white'>
+              <ul className='flex justify-start items-center px-24 gap-4 h-16  font-semibold'>
                   <img className='h-14 w-24' src={logo} alt="Logo" />
                   <li className=''>Attraction</li>
                   <li className=''>Gallery</li>
