@@ -11,10 +11,10 @@ export default function TopSection() {
             </div>
             <img
                src={TopSectionPic}
-               className="w-full h-full absolute object-cover"
+               className="w-screen h-full absolute object-cover"
                alt="TopSectionImge"
             />
-            <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 flex flex-col justify-center items-center">
+            <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
                <h1 className="text-4xl font-semibold">
                   Wander <span className="text-primarycolor">More</span> Worry{" "}
                   <span className="text-primarycolor">Less</span>

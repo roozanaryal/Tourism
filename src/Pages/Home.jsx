@@ -1,6 +1,7 @@
 import React from "react";
 import TopSection from "../Components/TopSection";
 import CardHome from "../Components/CardHome";
+import Review from "../Components/Review"
 
 export default function Home() {
    return (
@@ -24,13 +25,16 @@ export default function Home() {
                guide you to the best spots, rich in culture, history, and
                natural beauty, making your visit truly remarkable.
             </p>
-            <div>
             <CardHome />
-            </div>
-            <div className="flex flex-row items-center mt-10">
+            <div className="flex flex-row  justify-center mt-10">
+               <div>
                <h1 className="font-semibold text-4xl"><span className="text-primarycolor">What</span>{" "}Our Client Says</h1>
-
+               </div>
+               <div>
+                  <Review/>
             </div>
+            </div>
+
        </div>
       </>
    );
