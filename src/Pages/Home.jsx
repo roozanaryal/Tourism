@@ -1,13 +1,14 @@
 import React from "react";
 import TopSection from "../Components/TopSection";
 import CardHome from "../Components/CardHome";
-import Review from "../Components/Review"
+import Review from "../Components/Review";
+import Footer from "../Components/Footer";
 
 export default function Home() {
    return (
       <>
          <TopSection />
-         <div className="px-40 ">
+         <div className="px-40 mb-52 ">
             <div className="flex justify-center items-center mt-10">
                <div className="w-32 h-1 bg-primarycolor "></div>
                <div className="font-bold text-3xl p-3 ">
@@ -25,17 +26,20 @@ export default function Home() {
                guide you to the best spots, rich in culture, history, and
                natural beauty, making your visit truly remarkable.
             </p>
-            <CardHome />
+            <div className="mt-20 flex gap-8">
+               <CardHome />
+            </div>
             <div className="flex flex-row  justify-center mt-10">
                <div>
-               <h1 className="font-semibold text-4xl"><span className="text-primarycolor">What</span>{" "}Our Client Says</h1>
+                  <h1 className="font-semibold text-4xl">
+                     <span className="text-primarycolor">What</span> Our Client
+                     Says
+                  </h1>
                </div>
-               <div>
-                  <Review/>
+               <div>{/* <Review/> */}</div>
             </div>
-            </div>
-
-       </div>
+         </div>
+         <Footer />
       </>
    );
 }

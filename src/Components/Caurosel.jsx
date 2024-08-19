@@ -7,7 +7,7 @@ import { TiArrowRightThick } from "react-icons/ti";
 import { TiArrowLeftThick } from "react-icons/ti";
 import card from "../assets/feedback.png";
 
-const InfiniteSlider = ({ slides }) => {
+const Caurosel = ({ slides }) => {
    const [currentSlide, setCurrentSlide] = useState(0);
 
    const handlePrevClick = () => {
