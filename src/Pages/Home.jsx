@@ -2,21 +2,20 @@ import React from "react";
 import TopSection from "../Components/TopSection";
 import CardHome from "../Components/CardHome";
 import Review from "../Components/Review";
-import Footer from "../Components/Footer";
 
 export default function Home() {
    return (
-      <>
+      <div className="overflow-hidden">
          <TopSection />
-         <div className="px-40 mb-52 ">
+         <div className="">
             <div className="flex justify-center items-center mt-10">
                <div className="w-32 h-1 bg-primarycolor "></div>
                <div className="font-bold text-3xl p-3 ">
                   About <span className="text-primarycolor">Us</span>
                </div>
-               <div className="w-32 h-1 bg-primarycolor "></div>
+               <div className=" w-32 h-1 bg-primarycolor "></div>
             </div>
-            <p className="text-center">
+            <p className="text-center px-28 py-6">
                Welcome to our travel company, your trusted guide to discovering
                the wonders of Nepal. We specialize in helping tourists uncover
                the hidden gems and must-see destinations across this
@@ -26,7 +25,7 @@ export default function Home() {
                guide you to the best spots, rich in culture, history, and
                natural beauty, making your visit truly remarkable.
             </p>
-            <div className="mt-20 flex gap-8">
+            <div className="flex justify-center gap-10 mt-9">
                <CardHome />
             </div>
             <div className="flex flex-row  justify-center mt-10">
@@ -36,10 +35,8 @@ export default function Home() {
                      Says
                   </h1>
                </div>
-               <div>{/* <Review/> */}</div>
             </div>
          </div>
-         <Footer />
-      </>
+      </div>
    );
 }

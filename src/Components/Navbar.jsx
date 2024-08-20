@@ -1,19 +1,29 @@
-import React from 'react'
-import logo from '../assets/logo.png'
+import React from "react";
+import logo from "../assets/logo.png";
+import { NavLink } from "react-router-dom";
+import { NAV_LINKS } from "../Constants/Constant";
 export default function Navbar() {
-  return (
+   return (
       <>
-          <nav className='text-white'>
-              <ul className='flex justify-start items-center px-24 gap-4 h-16  font-semibold'>
-                  <img className='h-14 w-24' src={logo} alt="Logo" />
-                  <li className=''>Attraction</li>
-                  <li className=''>Gallery</li>
-                  <li className=''>Connect With Us</li>
-                  <li className=''>Community</li>
-                  <li className=''>Guides</li>
-                  <li className=''>Login/Register</li>
-              </ul>
-        </nav>
+         <nav className="">
+            <ul className="flex justify-start items-center px-24 gap-5 h-16  font-semibold">
+               <NavLink to="/">
+                  <img className="h-14 w-24 " src={logo} alt="Logo" />
+               </NavLink>
+               {NAV_LINKS.map((nav, key) => {
+                return  <li className="" key={nav.id}>
+                     <NavLink
+                        to={nav.path}
+                        className={({ isActive }) =>
+                           `${isActive ? "text-primarycolor" : "text-white"}`
+                        }
+                     >
+                        {nav.label}
+                     </NavLink>
+                  </li>;
+               })}
+            </ul>
+         </nav>
       </>
-  )
+   );
 }

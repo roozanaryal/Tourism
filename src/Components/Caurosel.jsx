@@ -9,7 +9,7 @@ import card from "../assets/feedback.png";
 
 const Caurosel = ({ slides }) => {
    const [currentSlide, setCurrentSlide] = useState(0);
-
+ 
    const handlePrevClick = () => {
       ref.current.slickPrev();
    };

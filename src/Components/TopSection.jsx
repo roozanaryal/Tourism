@@ -5,13 +5,13 @@ import Search from "./Search";
 export default function TopSection() {
    return (
       <>
-         <div className="relative h-[80vh] text-white w-screen ">
-            <div className="absolute top-0 left-0 w-full z-10">
+         <div className="relative h-[80vh] text-white w-full bg-red-500 ">
+            <div className="absolute top-0 left-0 w-screen z-10">
                <Navbar />
             </div>
             <img
                src={TopSectionPic}
-               className="w-screen h-full absolute object-cover"
+               className="w-full h-full absolute object-cover"
                alt="TopSectionImge"
             />
             <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 flex flex-col items-center">

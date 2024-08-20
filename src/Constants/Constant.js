@@ -22,3 +22,11 @@ export const Card_Home = [
       image: "https://upload.wikimedia.org/wikipedia/commons/8/81/NClark-2017-1-15.jpg",
    },
 ];
+
+export const NAV_LINKS = [
+   { id: 1, label: 'Attraction', path: '/attraction' },
+   { id: 2, label: 'Connect With Us', path: '/contact' },
+   { id: 3, label: 'Community', path: '/community' },
+   { id: 4, label: 'Guides', path: '/guides' },
+   { id: 5, label: 'Login/Register', path: '/login' },
+ ];
