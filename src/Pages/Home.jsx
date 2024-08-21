@@ -5,9 +5,9 @@ import Review from "../Components/Review";
 
 export default function Home() {
    return (
-      <div className="overflow-hidden">
+      <>
          <TopSection />
-         <div className="">
+         <div>
             <div className="flex justify-center items-center mt-10">
                <div className="w-32 h-1 bg-primarycolor "></div>
                <div className="font-bold text-3xl p-3 ">
@@ -37,6 +37,6 @@ export default function Home() {
                </div>
             </div>
          </div>
-      </div>
+      </>
    );
 }

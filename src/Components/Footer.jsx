@@ -43,7 +43,6 @@ export default function Footer() {
                   <div className=" flex flex-col lg:mt-0  space-y-4 pt-5 items-start  text-sm lg:text-base font-normal ">
                      <a href="/homepage">Home</a>
                      <a href="/about-us">About</a>
-                     <a href="/news">Blogs</a>
                      <a href="/">Help & Support</a>
                   </div>
                </div>

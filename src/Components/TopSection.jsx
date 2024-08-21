@@ -4,7 +4,7 @@ import TopSectionPic from "../assets/TopSectionImage.png";
 import Search from "./Search";
 export default function TopSection() {
    return (
-      <>
+      <div className="overflow-x-hidden">
          <div className="relative h-[80vh] text-white w-full bg-red-500 ">
             <div className="absolute top-0 left-0 w-screen z-10">
                <Navbar />
@@ -24,6 +24,6 @@ export default function TopSection() {
                </div>
             </div>
          </div>
-      </>
+      </div>
    );
 }

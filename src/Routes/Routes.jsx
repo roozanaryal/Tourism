@@ -10,6 +10,7 @@ import Guide from "../Pages/Guide";
 import AttractionDetail from "../Pages/AttractionDetail";
 import Home from "../Pages/Home";
 import LoginSignup from "../Pages/LoginSignup";
+import Community from "../Pages/Community";
 
 export const router = createBrowserRouter(
    createRoutesFromElements(
@@ -17,9 +18,10 @@ export const router = createBrowserRouter(
          <Route index element={<Home />} />
          <Route path="contact" element={<Contact />} />
          <Route path="attraction" element={<Attraction />} />
-         <Route path="attractiondetail" element={<AttractionDetail />} />
+         <Route path="detail" element={<AttractionDetail />} />
          <Route path="guides" element={<Guide />} />
          <Route path="login" element={<LoginSignup />} />
+         <Route path="community" element={<Community />} />
       </Route>
    )
 );

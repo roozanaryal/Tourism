@@ -3,6 +3,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { FaLocationArrow } from "react-icons/fa";
 import Navbar from "../Components/Navbar";
+import pic from "../assets/ContactImg.png";
 
 export default function Contact() {
    return (
@@ -10,11 +11,7 @@ export default function Contact() {
          <div className="absolute top-0 left-0 w-full z-10 ">
             <Navbar />
          </div>
-         <img
-            src="https://www.searchenginejournal.com/wp-content/uploads/2022/08/contact-us-2-62fa2cc2edbaf-sej.png"
-            alt="photo"
-            className="h-[50vh] w-full object-cover"
-         />
+         <img src={pic} alt="photo" className="h-[50vh] w-full object-cover" />
          <div className="flex lg:flex-row flex-col justify-between xl:px-32 md:px-10 px-3 bg-[#F4F3F3] p-20 font-outfit gap-3">
             <div className="bg-white lg:w-[55vw] w-[100%] md:p-10 p-3 lg:mt-0 mt-10">
                <p className="font-bold text-3xl text-primary">
@@ -144,8 +141,9 @@ export default function Contact() {
                below. For directions, simply use the map to navigate to our
                address. We look forward to seeing you!
             </p>
-            <div className="">
-               <iframe className="w-full px-3 py-10"
+            <div className="py-8">
+               <iframe
+                  className="w-full px-3 py-10"
                   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3531.4167866324383!2d85.31019177500158!3d27.73528792425949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1724133413568!5m2!1sen!2snp"
                   height="450"
                   allowfullscreen=""
