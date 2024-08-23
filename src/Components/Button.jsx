@@ -6,10 +6,15 @@ function Button({
    bg = "bg-primarycolor",
    txt = "text-white",
    className = "",
+   onClick,
    ...props
+   
 }) {
    return (
-      <button className={` ${bg} ${txt}  ${className} {...props}`}>
+      <button
+         className={` ${bg} ${txt}  ${className} {...props}`}
+         onClick={onClick}
+      >
          {children}
       </button>
    );

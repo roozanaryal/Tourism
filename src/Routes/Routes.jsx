@@ -20,7 +20,6 @@ export const router = createBrowserRouter(
          <Route path="attraction" element={<Attraction />} />
          <Route path="detail" element={<AttractionDetail />} />
          <Route path="guides" element={<Guide />} />
-         <Route path="login" element={<LoginSignup />} />
          <Route path="community" element={<Community />} />
       </Route>
    )

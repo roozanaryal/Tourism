@@ -5,15 +5,17 @@ import { IoMail } from "react-icons/io5";
 import Button from "../Components/Button";
 import { FaLock, FaUser } from "react-icons/fa";
 
-function LoginSignup() {
+function LoginSignup({showModal,onClose}) {
+  if (!showModal) return null;
    const [state, setState] = useState("Login");
+
    return (
       <>
          <div className="fixed inset-0 w-screen  bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center">
             <div className="w-1/3 flex flex-col bg-white">
-               <IoMdClose className="place-self-end text-3xl font-bold m-2 hover:drop-shadow-lg hover:cursor-pointer text-primarycolor" />
+               <IoMdClose onClick={onClose} className="place-self-end text-3xl font-bold m-2 hover:drop-shadow-lg hover:cursor-pointer text-primarycolor" />
                <div className="">
-                  <h1 className="font-semibold text-4xl text-center">
+                  <h1 className="font-semibold text-black text-4xl text-center">
                      {state === "Login" ? (
                         <>
                            Log<span className="text-primarycolor">in</span>
@@ -32,6 +34,7 @@ function LoginSignup() {
                      />
                      <InputBox placeholder="Enter your email" Icon={IoMail} />
                      <InputBox
+                        type="password"
                         placeholder={
                            state === "Login" ? "Password" : "Set password"
                         }
@@ -40,6 +43,7 @@ function LoginSignup() {
                      {state === "Signup" && (
                         <>
                            <InputBox
+                              type="password"
                               placeholder="Confirm password"
                               Icon={FaLock}
                            />
@@ -47,7 +51,7 @@ function LoginSignup() {
                      )}
                   </div>
                   {state === "Login" && (
-                     <p className="text-center">
+                     <p className="text-center text-black">
                         Forgot password?{" "}
                         <a href="#" className="text-primarycolor">
                            Click Here
@@ -60,6 +64,13 @@ function LoginSignup() {
                      {state === "Login" ? "Login" : "Signup"}
                   </Button>
                   <Button
+                     onClick={() => {
+                        if (state === "Login") {
+                           setState("Signup");
+                        } else {
+                           setState("Login");
+                        }
+                     }}
                      className="py-2 px-9 rounded-3xl font-semibold "
                      bg="bg-gray-300"
                      txt="text-black"

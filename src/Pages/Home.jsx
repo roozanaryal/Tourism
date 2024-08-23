@@ -7,7 +7,7 @@ export default function Home() {
    return (
       <>
          <TopSection />
-         <div>
+         <div className="w-full">
             <div className="flex justify-center items-center mt-10">
                <div className="w-32 h-1 bg-primarycolor "></div>
                <div className="font-bold text-3xl p-3 ">
@@ -28,13 +28,14 @@ export default function Home() {
             <div className="flex justify-center gap-10 mt-9">
                <CardHome />
             </div>
-            <div className="flex flex-row  justify-center mt-10">
+            <div className="flex flex-col items-center  justify-center mt-10 gap-6 p-8">
                <div>
-                  <h1 className="font-semibold text-4xl">
+                  <h1 className="font-semibold text-4xl ">
                      <span className="text-primarycolor">What</span> Our Client
                      Says
                   </h1>
                </div>
+               <Review />
             </div>
          </div>
       </>
