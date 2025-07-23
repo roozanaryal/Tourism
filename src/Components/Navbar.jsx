@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { NAV_LINKS } from "../Constants/Constant";
@@ -6,9 +6,6 @@ import LoginSignup from "../Pages/LoginSignup";
 export default function Navbar() {
    const [showModal, setShowModal] = useState(false);
 
-   const handleShowModal = () => {
-      setShowModal(true);
-   };
    const handleCloseModal = () => {
       setShowModal(false);
    };
@@ -19,13 +16,13 @@ export default function Navbar() {
                <NavLink to="/">
                   <img className="h-14 w-24 " src={logo} alt="Logo" />
                </NavLink>
-               {NAV_LINKS.map((nav, key) => {
+               {NAV_LINKS.map((nav) => {
                   return (
                      <li className="" key={nav.id}>
                         <NavLink
                            to={nav.path}
                            className={({ isActive }) =>
-                              `${isActive ? "text-primarycolor" : "text-white"}`
+                              `nav-link transition-colors hover:text-primarycolor ${isActive ? "text-primarycolor" : "text-white"}`
                            }
                         >
                            {nav.label}
@@ -33,7 +30,7 @@ export default function Navbar() {
                      </li>
                   );
                })}
-               <li onClick={() => setShowModal(true)}>Login/Register</li>
+               <li onClick={() => setShowModal(true)} className="nav-link text-white transition-colors hover:text-primarycolor">Login/Register</li>
             </ul>
          </nav>
          <LoginSignup showModal={showModal} onClose={handleCloseModal} />

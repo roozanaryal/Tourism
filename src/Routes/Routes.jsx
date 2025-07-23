@@ -9,7 +9,7 @@ import Attraction from "../Pages/Attraction";
 import Guide from "../Pages/Guide";
 import AttractionDetail from "../Pages/AttractionDetail";
 import Home from "../Pages/Home";
-import LoginSignup from "../Pages/LoginSignup";
+// import LoginSignup from "../Pages/LoginSignup";
 import Community from "../Pages/Community";
 
 export const router = createBrowserRouter(

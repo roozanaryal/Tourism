@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar";
 import TopSectionPic from "../assets/TopSectionImage.png";
 import Search from "./Search";

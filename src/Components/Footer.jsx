@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaYoutube } from "react-icons/fa";
 
 import { FaFacebook } from "react-icons/fa";
@@ -7,8 +7,9 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
    return (
-      <div className="lg:px-10 xl:px-32 md:px-10 px-4  bg-gradient-to-t pt-7 bg-primarycolor font-poppins text-white">
-         <div className=" flex md:justify-between md:flex-row flex-col justify-eve1nly  md:items-center items-start  mt-4">
+      <div className="relative lg:px-10 xl:px-32 md:px-10 px-4 pt-14 bg-gradient-to-t from-primarycolor via-orange-600 to-primarycolor text-white font-poppins overflow-hidden">
+         <svg className="absolute -top-1 left-0 w-full h-10 text-primarycolor" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0,32L1440,0V40H0Z" fill="currentColor" /></svg>
+         <div className="flex md:justify-between md:flex-row flex-col justify-eve1nly  md:items-center items-start  mt-4">
             <div className="flex md:hidden justify-between w-full">
                <div className=" md:w-[30%] w-[200px] md:hidden flex flex-col items-start ">
                   <div className="flex gap-3 items-center cursor-pointer">
@@ -22,16 +23,16 @@ export default function Footer() {
                      journey.{" "}
                   </p>
                   <div className="flex gap-3 justify-start items-start lg:mt-0 pt-6">
-                     <div className="p-1 rounded-full  text-white cursor-pointer">
+                     <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                         <FaFacebook />
                      </div>
-                     <div className="p-1 rounded-full  text-white cursor-pointer">
+                     <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                         <FaInstagram />
                      </div>
-                     <div className="p-1 rounded-full  text-white cursor-pointer">
+                     <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                         <FaYoutube />
                      </div>
-                     <div className="p-1 rounded-full  text-white cursor-pointer">
+                     <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                         <FaXTwitter />
                      </div>
                   </div>
@@ -41,9 +42,9 @@ export default function Footer() {
                      About
                   </h1>
                   <div className=" flex flex-col lg:mt-0  space-y-4 pt-5 items-start  text-sm lg:text-base font-normal ">
-                     <a href="/homepage">Home</a>
-                     <a href="/about-us">About</a>
-                     <a href="/">Help & Support</a>
+                     <a href="#">Home</a>
+                     <a href="#">About</a>
+                     <a href="#">Help & Support</a>
                   </div>
                </div>
             </div>
@@ -53,13 +54,13 @@ export default function Footer() {
                      Company
                   </h1>
                   <div className=" flex flex-col lg:mt-0  space-y-4 pt-5 items-start text-sm lg:text-base font-normal ">
-                     <a href={"/"} className="cursor-pointer">
+                     <a href="#" className="cursor-pointer">
                         How we work
                      </a>
-                     <a href={"/"} className="cursor-pointer">
+                     <a href="#" className="cursor-pointer">
                         Terms of service
                      </a>
-                     <a href="/join-now" className="cursor-pointer">
+                     <a href="#" className="cursor-pointer">
                         Pricing
                      </a>
                   </div>
@@ -88,16 +89,16 @@ export default function Footer() {
                   you through every step of your journey.{" "}
                </p>
                <div className="flex gap-3 justify-start items-start lg:mt-0 pt-6">
-                  <div className="p-1 rounded-full  text-white cursor-pointer">
+                  <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                      <FaFacebook />
                   </div>
-                  <div className="p-1 rounded-full  text-white cursor-pointer">
+                  <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                      <FaInstagram />
                   </div>
-                  <div className="p-1 rounded-full  text-white cursor-pointer">
+                  <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                      <FaYoutube />
                   </div>
-                  <div className="p-1 rounded-full  text-white cursor-pointer">
+                  <div className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer">
                      <FaXTwitter />
                   </div>
                </div>

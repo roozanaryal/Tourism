@@ -1,4 +1,3 @@
-import React from "react";
 import TopSection from "../Components/TopSection";
 import CardHome from "../Components/CardHome";
 import Review from "../Components/Review";

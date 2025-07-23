@@ -1,4 +1,3 @@
-import React from "react";
 import manang from "../assets/Manang/m1.webp";
 import Navbar from "../Components/Navbar";
 
@@ -36,9 +35,9 @@ function AttractionDetail() {
                className="w-full px-3 py-10"
                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3531.4167866324383!2d85.31019177500158!3d27.73528792425949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1724133413568!5m2!1sen!2snp"
                height="450"
-               allowfullscreen=""
+               allowFullScreen
                loading="lazy"
-               referrerpolicy="no-referrer-when-downgrade"
+               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
          </div>
       </>

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { FaLocationArrow } from "react-icons/fa";
@@ -95,8 +95,8 @@ export default function Contact() {
                   </button>
                </form>
             </div>
-            <div className="flex flex-col gap-4">
-               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4">
+            <div className="flex flex-col gap-4 fade-in-up">
+               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4 card fade-in-up">
                   <div className="h-14 w-14 rounded-full  bg-orange-600  flex items-center justify-center">
                      <FaPhoneAlt className=" text-white" />
                   </div>
@@ -107,7 +107,7 @@ export default function Contact() {
                      </p>
                   </div>
                </div>
-               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4">
+               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4 card fade-in-up">
                   <div className="h-14 w-14 rounded-full  bg-orange-600  flex items-center justify-center">
                      <CiMail className=" text-white  " />
                   </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                      </p>
                   </div>
                </div>
-               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4 rounded-b-2xl">
+               <div className="h-[90px] md:w-[350px] w-[90vw] p-6 bg-white flex items-center gap-4 rounded-b-2xl card fade-in-up">
                   <div className="h-14 w-14 rounded-full bg-orange-600  flex items-center justify-center">
                      <FaLocationArrow className="text-white  " />
                   </div>
@@ -148,7 +148,7 @@ export default function Contact() {
                   height="450"
                   allowfullscreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer-when-downgrade"
                ></iframe>
             </div>
          </div>
