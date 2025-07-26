@@ -6,9 +6,11 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import postRoutes from "./routes/post.route.js";
+// import searchRoute from "./routes/search.route.js";
+// import http from "http";
 
 dotenv.config();
-const PORT = process.dotenv.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 export const app = express();
 
@@ -27,12 +29,12 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
 app.use("/createpost", postRoutes);
-app.use("/search", searchRoute);
+// app.use("/search", searchRoute);
 
 const startServer = async () => {
   try {
     await connectDB();
-    server.listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`Server is Running on ${PORT}`);
     });
   } catch (error) {
