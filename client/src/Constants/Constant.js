@@ -1,4 +1,5 @@
 import explore from "../assets/Explore.png";
+export default explore;
 export const Card_Home = [
    {
       id: 1,
@@ -48,3 +49,5 @@ export const ReviewsOfClients = [
       image: "https://imgs.search.brave.com/iS-DRG0NfGaAiJc23XONRp-6mayCyNqh59kIFcnlC9Q/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE3/MTQ1MDMxL3Bob3Rv/L3BvcnRyYWl0LW9m/LXRpYmV0YW4td29t/YW4uanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPWpkVm5HU3E1/UVhBYmJwRklmMU9W/S2FjaUxoR3hhc2dh/TDhJTkpmN2ZTMXM9",
    },
 ];
+
+export const baseURL = "http://localhost:5000";
