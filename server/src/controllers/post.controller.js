@@ -3,23 +3,33 @@ import Post from "../models/post.model.js";
 export const createPost = async (req, res) => {
   try {
     const owner = req.user._id;
-    const { description, photo } = req.body;
+    const { placename, review } = req.body;
 
+    // Check if user is authenticated
     if (!owner) {
       return res
         .status(400)
         .json({ message: "You are not logged In or Token is expired" });
     }
 
-    if (!description || !photo) {
+    // Check if user is admin (only admins can create places)
+    if (!req.user.isAdmin) {
+      return res
+        .status(403)
+        .json({ message: "Access denied. Only admins can add places." });
+    }
+
+    if (!placename || !review) {
       return res
         .status(400)
-        .json({ message: "Description or photo is missing on the post" });
+        .json({ message: "Place name or review is missing on the post" });
     }
+    
+    // For admin-created places, we can use the admin's ID as owner
     const newPost = new Post({
       owner,
-      description,
-      photo,
+      placename,
+      review,
     });
     await newPost.save();
     res.status(200).json(newPost);
@@ -32,7 +42,6 @@ export const createPost = async (req, res) => {
   }
 };
 
-//SomeFixes need to be applied on this
 export const getAllPost = async (req, res) => {
   try {
     //find all posts as posts need to be shown even when we are not logged in

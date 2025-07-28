@@ -8,13 +8,13 @@ const postSchema = new mongoose.Schema(
       ref: User,
       required: true,
     },
-    description: {
+    placename: {
       type: String,
       required: true,
     },
-    photo: {
-      type: String,
-      default: "",
+    review: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }
