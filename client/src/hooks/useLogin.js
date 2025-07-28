@@ -1,19 +1,21 @@
 import { useState } from "react";
 import baseURL from "../Constants/baseURL.js";
+import { useAuth } from "../Context/AuthContext";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
+  const { login: authLogin } = useAuth();
 
-  const login = async (email, password) => {
+  const login = async (username, email, password) => {
     setLoading(true);
     try {
-      if (!email.trim() || !password) {
-        throw new Error("Username or password is empty");
+      if (!username.trim() || !email.trim() || !password) {
+        throw new Error("All fields are required");
       }
       const res = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, username }),
         credentials: "include",
       });
       const text = await res.text();
@@ -35,6 +37,9 @@ const useLogin = () => {
         localStorage.setItem("neptour-token", data.token);
       }
       localStorage.setItem("neptour-user", JSON.stringify(data));
+      
+      // Update AuthContext to trigger navbar update
+      authLogin(data);
       
       return data;
     } catch (error) {

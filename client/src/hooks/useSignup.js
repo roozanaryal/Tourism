@@ -1,8 +1,11 @@
 import { useState } from "react";
 import baseURL from "../Constants/baseURL.js";
+import { useAuth } from "../Context/AuthContext";
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
+  const { login: authLogin } = useAuth();
+  
   const signup = async (username, email, password, confirmPassword) => {
     setLoading(true);
     try {
@@ -41,6 +44,7 @@ const useSignup = () => {
       }
       localStorage.setItem("neptour-user", JSON.stringify(data));
       //now set to authContext
+      authLogin(data);
 
       return data;
     } catch (error) {

@@ -35,9 +35,10 @@ function LoginSignup({ showModal, onClose }) {
     setSuccess("");
     if (state === "Login") {
       try {
-        await login(email, password);
+        await login(username, email, password);
         setSuccess("Login successful!");
         // Clear form fields
+        setUsername("");
         setEmail("");
         setPassword("");
         // Close modal after a short delay to show success message
