@@ -1,4 +1,3 @@
-
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { FaLocationArrow } from "react-icons/fa";
@@ -6,13 +5,13 @@ import Navbar from "../Components/Navbar";
 import pic from "../assets/ContactImg.png";
 
 export default function Contact() {
-   return (
-      <>
-         <div className="absolute top-0 left-0 w-full z-10 ">
-            <Navbar />
-         </div>
-         <img src={pic} alt="photo" className="h-[50vh] w-full object-cover" />
-         <div className="flex lg:flex-row flex-col justify-between xl:px-32 md:px-10 px-3 bg-[#F4F3F3] p-20 font-outfit gap-3">
+  return (
+    <>
+       <div className="absolute top-0 left-0 w-full z-10 ">
+          <Navbar />
+       </div>
+       <img src={pic} alt="photo" className="h-[50vh] w-full object-cover" />
+       <div className="flex lg:flex-row flex-col justify-between xl:px-32 md:px-10 px-3 bg-[#F4F3F3] p-20 font-outfit gap-3">
             <div className="bg-white lg:w-[55vw] w-[100%] md:p-10 p-3 lg:mt-0 mt-10">
                <p className="font-bold text-3xl text-primary">
                   Your <span className="text-orange-600"> Information</span>

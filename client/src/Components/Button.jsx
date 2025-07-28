@@ -12,8 +12,10 @@ function Button({
 }) {
    return (
       <button
-         className={` ${bg} ${txt}  ${className} {...props}`}
+         type={type}
+         className={` ${bg} ${txt}  ${className}`}
          onClick={onClick}
+         {...props}
       >
          {children}
       </button>

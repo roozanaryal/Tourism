@@ -1,4 +1,4 @@
-function InputBox({ placeholder = "Enter text", value, onchange,Icon,type="text" }) {
+function InputBox({ placeholder = "Enter text", value, onChange, Icon, type = "text" }) {
    return (
       <>
          <div className="flex justify-center items-center mt-4 mb-4 mx-8 bg-gray-700 bg-opacity-30 rounded-sm">
@@ -6,6 +6,8 @@ function InputBox({ placeholder = "Enter text", value, onchange,Icon,type="text"
             <input
                type={type}
                placeholder={placeholder}
+               value={value}
+               onChange={onChange}
                className="w-[85%] bg-transparent outline-none p-4 placeholder:text-primarycolor"
             />
          </div>

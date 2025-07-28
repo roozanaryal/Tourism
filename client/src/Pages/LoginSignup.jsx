@@ -9,6 +9,16 @@ import Button from "../Components/Button";
 import { FaLock, FaUser } from "react-icons/fa";
 
 function LoginSignup({ showModal, onClose }) {
+  // Clear state and errors when toggling between Login and Signup
+  const handleToggle = (newState) => {
+    setState(newState);
+    setError("");
+    setSuccess("");
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
   const [state, setState] = useState("Login");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +37,13 @@ function LoginSignup({ showModal, onClose }) {
       try {
         await login(email, password);
         setSuccess("Login successful!");
-        // Optionally, redirect or close modal here
+        // Clear form fields
+        setEmail("");
+        setPassword("");
+        // Close modal after a short delay to show success message
+        setTimeout(() => {
+          onClose();
+        }, 1000);
       } catch (err) {
         setError(err.message || "Login failed");
       }
@@ -37,9 +53,17 @@ function LoginSignup({ showModal, onClose }) {
         return;
       }
       try {
-        await signup(username, email, password);
+        await signup(username, email, password, confirmPassword);
         setSuccess("Signup successful!");
-        // Optionally, redirect or close modal here
+        // Clear form fields
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        // Close modal after a short delay to show success message
+        setTimeout(() => {
+          onClose();
+        }, 1000);
       } catch (err) {
         setError(err.message || "Signup failed");
       }
@@ -76,14 +100,14 @@ function LoginSignup({ showModal, onClose }) {
                 placeholder="Enter your username"
                 Icon={FaUser}
                 value={username}
-                onchange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 type="text"
                 />
               <InputBox
                 placeholder="Enter your email"
                 Icon={IoMail}
                 value={email}
-                onchange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 />
               <InputBox
@@ -91,7 +115,7 @@ function LoginSignup({ showModal, onClose }) {
                 placeholder={state === "Login" ? "Password" : "Set password"}
                 Icon={FaLock}
                 value={password}
-                onchange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
               {state === "Signup" && (
                 <>
@@ -100,7 +124,7 @@ function LoginSignup({ showModal, onClose }) {
                     placeholder="Confirm password"
                     Icon={FaLock}
                     value={confirmPassword}
-                    onchange={(e) => setConfirmPassword(e.target.value)}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </>
               )}
@@ -115,17 +139,12 @@ function LoginSignup({ showModal, onClose }) {
             )}
           </div>
           <div className="flex justify-evenly py-4">
-            <Button className="py-2 px-11 rounded-3xl">
+            <Button type="submit" className="py-2 px-11 rounded-3xl">
               {state === "Login" ? "Login" : "Signup"}
             </Button>
             <Button
-              onClick={() => {
-                if (state === "Login") {
-                  setState("Signup");
-                } else {
-                  setState("Login");
-                }
-              }}
+              type="button"
+              onClick={() => handleToggle(state === "Login" ? "Signup" : "Login")}
               className="py-2 px-9 rounded-3xl font-semibold "
               bg="bg-gray-300"
               txt="text-black"
