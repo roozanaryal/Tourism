@@ -28,7 +28,7 @@ app.use(cookieParser());
 //Routes
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
-app.use("/createpost", postRoutes);
+app.use("/post", postRoutes);
 // app.use("/search", searchRoute);
 
 const startServer = async () => {

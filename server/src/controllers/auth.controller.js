@@ -36,13 +36,15 @@ export const signup = async (req, res) => {
 
     if (newUser) {
       await newUser.save();
-      generateTokenAndSetCookie(newUser._id, res);
+      const token = generateTokenAndSetCookie(newUser._id, res);
 
       res.status(201).json({
         _id: newUser._id,
         email: newUser.email,
         username: newUser.username,
         profilePic: newUser.profilePic,
+        isAdmin: newUser.isAdmin,
+        token: token,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -81,9 +83,7 @@ export const login = async (req, res) => {
       });
     }
 
-    generateTokenAndSetCookie(user._id, res);
-
-    console.log(req.cookies.jwt)
+    const token = generateTokenAndSetCookie(user._id, res);
 
     res.status(200).json({
       message: "Login successful",
@@ -91,6 +91,8 @@ export const login = async (req, res) => {
       email: user.email,
       username: user.username,
       profilePic: user.profilePic,
+      isAdmin: user.isAdmin,
+      token: token,
     });
   } catch (error) {
     res.status(500).json({

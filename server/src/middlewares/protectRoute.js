@@ -8,7 +8,7 @@ const protectRoute = async (req, res, next) => {
       req.headers.authorization &&
       req.headers.authorization.startsWith("Bearer")
     ) {
-      token = req.headers.authorization.split("Bearer")[1];
+      token = req.headers.authorization.split("Bearer ")[1].trim();
       console.log("protectedRoute: found token", token);
     }
     if (!token) {
@@ -16,17 +16,24 @@ const protectRoute = async (req, res, next) => {
         message: "No authorization, No Token",
       });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("protectRoute Decoded JWT", decoded);
-    const user = await User.findById(decoded.userId).select("-password");
-    if (!user) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log("protectRoute Decoded JWT", decoded);
+      const user = await User.findById(decoded.id).select("-password");
+      if (!user) {
+        return res.status(401).json({
+          message: "User not found",
+        });
+      }
+      req.user = user;
+      console.log("Req user set by protectRoute");
+      next();
+    } catch (error) {
+      console.error("JWT verification error:", error);
       return res.status(401).json({
-        message: "User not found",
+        message: "Invalid or expired token",
       });
     }
-    req.user = user;
-    console.log("Req user set by protectRoute");
-    next();
   } catch (error) {
     res.status(500).json({
       message: error.message,

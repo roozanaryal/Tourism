@@ -5,10 +5,12 @@ export const generateTokenAndSetCookie = (id, res) => {
     expiresIn: "15d",
   });
 
-  return res.cookie("jwt", token, {
+  res.cookie("jwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
     sameSite: "strict",
     maxAge: 15 * 24 * 60 * 60 * 1000,
   });
+  
+  return token;
 };
