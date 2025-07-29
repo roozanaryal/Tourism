@@ -18,7 +18,7 @@ export const router = createBrowserRouter(
          <Route index element={<Home />} />
          <Route path="contact" element={<Contact />} />
          <Route path="attraction" element={<Attraction />} />
-         <Route path="detail" element={<AttractionDetail />} />
+         <Route path="detail/:id" element={<AttractionDetail />} />
          <Route path="guides" element={<Guide />} />
          <Route path="community" element={<Community />} />
       </Route>

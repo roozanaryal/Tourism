@@ -4,7 +4,7 @@ import protectRoute from "../middlewares/protectRoute.js";
 import adminMiddleware from "../middlewares/adminMiddleware.js";
 const router = express.Router();
 
-router.post("/getallpost", getAllPost);
+router.get("/getallpost", getAllPost);
 router.post("/createpost", protectRoute, adminMiddleware, createPost);
 
 export default router;
