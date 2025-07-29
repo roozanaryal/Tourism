@@ -120,3 +120,14 @@ a:hover, button:hover, .card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
+
+/* Guide Card Hover Animation */
+.guide-card {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(0);
+}
+
+.guide-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}

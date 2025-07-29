@@ -3,12 +3,12 @@ import TopSectionPic from "../assets/TopSectionImage.png";
 import Search from "./Search";
 import PropTypes from "prop-types";
 
-export default function TopSection({ title = "Wander More Worry Less" }) {
+export default function TopSection({ title = "Wander More Worry Less", showSearch = true }) {
    return (
       <div className="overflow-x-hidden">
          <div className="relative h-[80vh] text-white w-full bg-red-500 ">
             <div className="absolute top-0 left-0 w-screen z-10">
-               <Navbar />
+               <Navbar transparent />
             </div>
             <img
                src={TopSectionPic}
@@ -19,9 +19,11 @@ export default function TopSection({ title = "Wander More Worry Less" }) {
                <h1 className="text-4xl font-semibold">
                   {title}
                </h1>
-               <div className="relative mt-4">
-                  <Search/>
-               </div>
+               {showSearch && (
+                  <div className="relative mt-4">
+                     <Search/>
+                  </div>
+               )}
             </div>
          </div>
       </div>
@@ -30,4 +32,5 @@ export default function TopSection({ title = "Wander More Worry Less" }) {
 
 TopSection.propTypes = {
   title: PropTypes.string,
+  showSearch: PropTypes.bool,
 };

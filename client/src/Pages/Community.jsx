@@ -17,7 +17,7 @@ function Community() {
       </div>
 
       <div className="absolute top-0 left-0 w-full z-20">
-        <Navbar />
+        <Navbar transparent />
       </div>
 
       <main className="relative z-10 w-full max-w-5xl h-[calc(100vh-120px)] mt-20 bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-white/20">

@@ -17,7 +17,7 @@ function GuideCard({ guide }) {
   };
 
   return (
-    <div className="flex p-4 items-center shadow-xl bg-white gap-5 w-[45vw] h-[40vh] mb-5 mt-5 mr-5">
+    <div className="flex p-4 items-center shadow-xl bg-white gap-5 w-[45vw] h-[40vh] mb-5 mt-5 mr-5 guide-card">
       <div className="w-[50%] h-full">
         <img
           src={manang}

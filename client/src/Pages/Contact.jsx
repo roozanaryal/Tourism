@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <>
        <div className="absolute top-0 left-0 w-full z-10 ">
-          <Navbar />
+          <Navbar transparent />
        </div>
        <img src={pic} alt="photo" className="h-[50vh] w-full object-cover" />
        <div className="flex lg:flex-row flex-col justify-between xl:px-32 md:px-10 px-3 bg-[#F4F3F3] p-20 font-outfit gap-3">

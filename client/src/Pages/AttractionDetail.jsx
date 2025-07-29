@@ -4,10 +4,7 @@ import Navbar from "../Components/Navbar";
 function AttractionDetail() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-[#f6f6f6] to-[#e2e8f0]">
-      {/* Navbar Overlay */}
-      <div className="fixed top-0 left-0 w-full z-20">
-        <Navbar />
-      </div>
+      <Navbar transparent />
 
       {/* Hero Image Section */}
       <div className="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">
