@@ -17,7 +17,13 @@ export default function TopSection({ title = "Wander More Worry Less", showSearc
             />
             <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
                <h1 className="text-4xl font-semibold">
-                  {title}
+                  {title === "Wander More Worry Less" ? (
+                     <>
+                        Wander <span className="text-primarycolor">More</span> Worry <span className="text-primarycolor">Less</span>
+                     </>
+                  ) : (
+                     title
+                  )}
                </h1>
                {showSearch && (
                   <div className="relative mt-4">

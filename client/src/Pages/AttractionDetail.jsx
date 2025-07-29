@@ -4,7 +4,9 @@ import Navbar from "../Components/Navbar";
 function AttractionDetail() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-[#f6f6f6] to-[#e2e8f0]">
-      <Navbar transparent />
+      <div className="absolute top-0 left-0 w-full z-20">
+        <Navbar transparent />
+      </div>
 
       {/* Hero Image Section */}
       <div className="relative h-[48vh] w-full flex items-center justify-center overflow-hidden">

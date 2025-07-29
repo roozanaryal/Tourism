@@ -8,9 +8,10 @@ function Layout() {
   const location = useLocation();
   
   // Pages that have their own transparent navbar and shouldn't show the global navbar
-  const pagesWithoutGlobalNavbar = ['/', '/guides', '/attraction', '/contact', '/community', '/detail'];
+  const pagesWithoutGlobalNavbar = ['/', '/guides', '/attraction', '/contact', '/community'];
   
-  const shouldShowGlobalNavbar = !pagesWithoutGlobalNavbar.includes(location.pathname);
+  // Check if current path starts with any of the paths that shouldn't show global navbar
+  const shouldShowGlobalNavbar = !pagesWithoutGlobalNavbar.includes(location.pathname) && !location.pathname.startsWith('/detail');
 
   return (
     <>
