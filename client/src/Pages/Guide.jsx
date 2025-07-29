@@ -1,16 +1,16 @@
-import React from "react";
 import TopSection from "../Components/TopSection";
 import GuideCard from "../Components/GuideCard";
+import guidesData from "../Constants/guidesData";
 
-function Guide() {
-   return (
-      <>
-       <TopSection />
-       <div>
-         <GuideCard/>
-       </div>
-      </>
-   );
+export default function Guide() {
+  return (
+    <>
+      <TopSection title="Guides" />
+      <div className="flex flex-wrap justify-center">
+        {guidesData.map((guide) => (
+          <GuideCard key={guide.id} guide={guide} />
+        ))}
+      </div>
+    </>
+  );
 }
-
-export default Guide;
