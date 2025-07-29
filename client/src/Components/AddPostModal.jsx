@@ -3,64 +3,22 @@ import PropTypes from "prop-types";
 import { IoMdClose } from "react-icons/io";
 import InputBox from "../Components/InputBox";
 import { useAuth } from "../Context/AuthContext";
-import baseURL from "../Constants/baseURL";
+import useAddPost from "../hooks/useAddPost";
 
 function AddPostModal({ showModal, onClose }) {
   const [placename, setPlacename] = useState("");
   const [review, setReview] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  
   const { user } = useAuth();
+  const { addPost, loading, error, success } = useAddPost();
   
   // Don't show modal if user is not admin or not logged in
   if (!showModal || !user || !user.isAdmin) return null;
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess("");
     
     try {
-      const token = localStorage.getItem("neptour-token");
-      
-      // Check if token exists
-      if (!token) {
-        throw new Error("Authentication token not found. Please log out and log back in.");
-      }
-      
-      const response = await fetch(`${baseURL}/post/createpost`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({ placename, review: parseInt(review) })
-      });
-      
-      // Check if response is JSON before parsing
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        // If it's an HTML response, it's likely an error page
-        if (contentType && contentType.includes("text/html")) {
-          throw new Error("Authentication error. Please log out and log back in.");
-        }
-        throw new Error("Server returned an invalid response. Please try again.");
-      }
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        // If it's a 401 error, it's likely a token issue
-        if (response.status === 401) {
-          throw new Error(data.message || "Authentication error. Please log out and log back in.");
-        }
-        throw new Error(data.message || "Failed to create post");
-      }
-      
-      setSuccess("Place added successfully!");
+      await addPost(placename, review);
       setPlacename("");
       setReview("");
       
@@ -69,9 +27,8 @@ function AddPostModal({ showModal, onClose }) {
         onClose();
       }, 2000);
     } catch (err) {
-      setError(err.message || "An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
+      // Error is handled in the hook
+      console.error(err);
     }
   };
   
