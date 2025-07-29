@@ -26,7 +26,7 @@ function AttractionDetail() {
             Discover the Beauty of Manang
           </h2>
           <p className="text-gray-700 text-lg text-justify leading-relaxed">
-            Manang, nestled in the heart of the Himalayas, offers breathtaking landscapes, unique culture, and adventure for every traveler. Explore its serene valleys, crystal-clear rivers, and traditional villages surrounded by snow-capped peaks. Whether you're trekking, sightseeing, or immersing in local traditions, Manang promises an unforgettable experience in Nepal's natural paradise.
+            Manang, nestled in the heart of the Himalayas, offers breathtaking landscapes, unique culture, and adventure for every traveler. Explore its serene valleys, crystal-clear rivers, and traditional villages surrounded by snow-capped peaks. Whether you&apos;re trekking, sightseeing, or immersing in local traditions, Manang promises an unforgettable experience in Nepal&apos;s natural paradise.
           </p>
         </div>
       </div>
