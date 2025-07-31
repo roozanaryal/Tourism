@@ -8,6 +8,11 @@ export const bookGuide = async (req, res) => {
     if (!guideName) {
       return res.status(400).json({ message: 'Guide name is required.' });
     }
+    // Prevent duplicate booking
+    const existingBooking = await Booking.findOne({ guideName, userEmail });
+    if (existingBooking) {
+      return res.status(400).json({ message: 'You have already booked this guide.' });
+    }
     const booking = new Booking({ guideName, userEmail });
     await booking.save();
     res.status(201).json({ message: 'Guide booked successfully', booking });

@@ -1,8 +1,29 @@
 import manang from "../assets/Manang/m1.webp";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import useBookGuide from "../hooks/useBookGuide";
+import { useAuth } from "../Context/AuthContext";
 
 function GuideCard({ guide }) {
+  const { user } = useAuth();
+  const { bookGuide } = useBookGuide();
+
+  const handleBookGuide = async () => {
+    if (!user) {
+      toast.error("Login first");
+      return;
+    }
+    try {
+      await bookGuide(guide.name, user.email);
+      toast.success(`Booking for ${guide.name} processed!`);
+    } catch (error) {
+      if (error.message === "You have already booked this guide.") {
+        toast.info("Your booking is already confirmed.");
+      } else {
+        toast.error(error.message || "Booking failed");
+      }
+    }
+  };
   // Function to render stars based on rating
   const renderStars = (rating) => {
     return (
@@ -50,7 +71,7 @@ function GuideCard({ guide }) {
           <div className="mt-4 flex justify-center">
             <button 
               className="bg-primarycolor hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => toast.success(`Booking for ${guide.name} processed!`)}
+              onClick={handleBookGuide}
             >
               Book Guide
             </button>
