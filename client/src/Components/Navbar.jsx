@@ -8,6 +8,7 @@ import AddPostModal from "../Components/AddPostModal";
 import { useAuth } from "../Context/AuthContext";
 import useLogout from "../hooks/useLogout";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import NotificationModal from "./NotificationModal";
 
 Navbar.propTypes = {
   transparent: PropTypes.bool,
@@ -16,11 +17,16 @@ Navbar.propTypes = {
 export default function Navbar({ transparent = false }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showAddPostModal, setShowAddPostModal] = useState(false);
+  const [showNotificationModal, setShowNotificationModal] = useState(false);
   const { user } = useAuth();
   const { logout } = useLogout();
 
   const handleCloseLoginModal = () => {
     setShowLoginModal(false);
+  };
+
+  const handleCloseNotificationModal = () => {
+    setShowNotificationModal(false);
   };
 
   const handleCloseAddPostModal = () => {
@@ -84,7 +90,10 @@ export default function Navbar({ transparent = false }) {
                 Logout
               </li>
               <li>
-                <IoIosNotificationsOutline className="text-2xl text-white cursor-pointer" />
+                <IoIosNotificationsOutline 
+                  className="text-2xl text-white cursor-pointer" 
+                  onClick={() => setShowNotificationModal(true)}
+                />
               </li>
             </>
           ) : (
@@ -102,6 +111,10 @@ export default function Navbar({ transparent = false }) {
         showModal={showAddPostModal}
         onClose={handleCloseAddPostModal}
       />
+      <NotificationModal
+        showModal={showNotificationModal}
+        onClose={handleCloseNotificationModal}
+      />  
     </>
   );
 }
