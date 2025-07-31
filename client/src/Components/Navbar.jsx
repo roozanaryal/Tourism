@@ -7,40 +7,42 @@ import LoginSignup from "../Pages/LoginSignup";
 import AddPostModal from "../Components/AddPostModal";
 import { useAuth } from "../Context/AuthContext";
 import useLogout from "../hooks/useLogout";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 Navbar.propTypes = {
   transparent: PropTypes.bool,
 };
 
 export default function Navbar({ transparent = false }) {
-   const [showLoginModal, setShowLoginModal] = useState(false);
-   const [showAddPostModal, setShowAddPostModal] = useState(false);
-   const { user } = useAuth();
-   const { logout } = useLogout();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showAddPostModal, setShowAddPostModal] = useState(false);
+  const { user } = useAuth();
+  const { logout } = useLogout();
 
-   const handleCloseLoginModal = () => {
-      setShowLoginModal(false);
-   };
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
+  };
 
-   const handleCloseAddPostModal = () => {
-      setShowAddPostModal(false);
-   };
+  const handleCloseAddPostModal = () => {
+    setShowAddPostModal(false);
+  };
 
-   const handleLogout = async () => {
-      try {
-         await logout();
-      } catch (error) {
-         console.error("Logout failed:", error);
-      }
-   };
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
-     const navBgClass = transparent
-    ? "bg-transparent"
-    : "bg-white shadow-md";
+  const navBgClass = transparent ? "bg-transparent" : "bg-white shadow-md";
 
   return (
     <>
-      <nav className={`w-full z-20 ${navBgClass}`} style={{transition: 'background 0.3s'}}> 
+      <nav
+        className={`w-full z-20 ${navBgClass}`}
+        style={{ transition: "background 0.3s" }}
+      >
         <ul className="flex justify-start cursor-pointer items-center px-24 gap-5 h-16 font-semibold">
           <NavLink to="/">
             <img className="h-14 w-24 " src={logo} alt="Logo" />
@@ -51,7 +53,9 @@ export default function Navbar({ transparent = false }) {
                 <NavLink
                   to={nav.path}
                   className={({ isActive }) =>
-                    `nav-link transition-colors hover:text-primarycolor ${isActive ? "text-primarycolor" : "text-white"}`
+                    `nav-link transition-colors hover:text-primarycolor ${
+                      isActive ? "text-primarycolor" : "text-white"
+                    }`
                   }
                 >
                   {nav.label}
@@ -62,24 +66,42 @@ export default function Navbar({ transparent = false }) {
           {user ? (
             <>
               {user.isAdmin && (
-                <li>
-                  <button
-                    onClick={() => setShowAddPostModal(true)}
-                    className="nav-link transition-colors hover:text-primarycolor text-white cursor-pointer"
-                  >
-                    Add Post
-                  </button>
-                </li>
+                <>
+                  <li>
+                    <button
+                      onClick={() => setShowAddPostModal(true)}
+                      className="nav-link transition-colors hover:text-primarycolor text-white cursor-pointer"
+                    >
+                      Add Post
+                    </button>
+                  </li>
+                </>
               )}
-              <li onClick={handleLogout} className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer">Logout</li>
+              <li
+                onClick={handleLogout}
+                className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer"
+              >
+                Logout
+              </li>
+              <li>
+                <IoIosNotificationsOutline className="text-2xl text-white cursor-pointer" />
+              </li>
             </>
           ) : (
-            <li onClick={() => setShowLoginModal(true)} className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer">Login/Register</li>
+            <li
+              onClick={() => setShowLoginModal(true)}
+              className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer"
+            >
+              Login/Register
+            </li>
           )}
         </ul>
       </nav>
       <LoginSignup showModal={showLoginModal} onClose={handleCloseLoginModal} />
-      <AddPostModal showModal={showAddPostModal} onClose={handleCloseAddPostModal} />
+      <AddPostModal
+        showModal={showAddPostModal}
+        onClose={handleCloseAddPostModal}
+      />
     </>
   );
 }

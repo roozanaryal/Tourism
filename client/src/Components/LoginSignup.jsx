@@ -1,4 +1,3 @@
-import React from 'react'
 import { ImCross } from "react-icons/im";
 
 function LoginSignup() {
