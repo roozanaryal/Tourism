@@ -1,0 +1,17 @@
+import Booking from "../models/booking.model.js";
+// Book a guide and store guideName and userEmail
+export const bookGuide = async (req, res) => {
+  try {
+    const { guideName } = req.body;
+    const user = req.user;
+    const userEmail = user.email;
+    if (!guideName) {
+      return res.status(400).json({ message: 'Guide name is required.' });
+    }
+    const booking = new Booking({ guideName, userEmail });
+    await booking.save();
+    res.status(201).json({ message: 'Guide booked successfully', booking });
+  } catch (error) {
+    res.status(500).json({ message: 'Error booking guide', error: error.message });
+  }
+};

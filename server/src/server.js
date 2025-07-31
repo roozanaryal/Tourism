@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import postRoutes from "./routes/post.route.js";
+import bookingRoute from "./routes/guidebooking.route.js";
 // import searchRoute from "./routes/search.route.js";
 // import http from "http";
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
 app.use("/post", postRoutes);
+app.use("/bookguide",bookingRoute);
 // app.use("/search", searchRoute);
 
 const startServer = async () => {
