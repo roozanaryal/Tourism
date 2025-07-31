@@ -2,11 +2,9 @@ import Booking from "../models/booking.model.js";
 // Book a guide and store guideName and userEmail
 export const bookGuide = async (req, res) => {
   try {
-    const { guideName } = req.body;
-    const user = req.user;
-    const userEmail = user.email;
-    if (!guideName) {
-      return res.status(400).json({ message: 'Guide name is required.' });
+    const { guideName, userEmail } = req.body;
+    if (!guideName || !userEmail) {
+      return res.status(400).json({ message: 'Guide name and user email are required.' });
     }
     // Prevent duplicate booking
     const existingBooking = await Booking.findOne({ guideName, userEmail });
