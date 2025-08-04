@@ -3,6 +3,9 @@ import baseURL from "../Constants/baseURL.js";
 
 const useContact = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
   const contact = async (
     firstName,
     lastName,
@@ -12,6 +15,8 @@ const useContact = () => {
     message
   ) => {
     setLoading(true);
+    setError(null);
+    setSuccess(false);
     try {
       if (!firstName || !lastName || !address || !phone || !email || !message) {
         throw new Error("All fields are required");
@@ -34,14 +39,22 @@ const useContact = () => {
           data.error || data.message || "Failed to submit contact form"
         );
       }
+      setSuccess(true);
       setLoading(false);
       return data;
     } catch (error) {
+      setError(error.message || "Something went wrong");
       setLoading(false);
       throw error;
     }
   };
-  return { contact, loading };
+
+  const reset = () => {
+    setError(null);
+    setSuccess(false);
+  };
+
+  return { contact, loading, error, success, reset };
 };
 
 export default useContact;
