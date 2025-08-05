@@ -10,7 +10,7 @@ const useGetMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(`${baseURL}/messages/get`, {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -27,6 +27,7 @@ const useGetMessage = () => {
       } else {
         setMessages([]);
       }
+      return data;
     } catch (error) {
       toast.error(error.message);
     } finally {

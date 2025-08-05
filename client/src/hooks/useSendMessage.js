@@ -4,24 +4,26 @@ import toast from "react-hot-toast";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
-  const [message] = useState([]);
 
-  const sendMessage = async () => {
+  const sendMessage = async (message) => {
     setLoading(true);
     try {
-      const res = await fetch(`${baseURL}/send/${myid}`, {// set My own id from context
+      const res = await fetch(`${baseURL}/messages/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          body: JSON.stringify({ message }),
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
         },
+        body: JSON.stringify({ message }),
       });
+      const data = await res.json();
       if (!res.ok) {
-        throw new Error(res.message || "Failed to send Message");
+        throw new Error(data.message || "Failed to send Message");
       }
+      return data;
     } catch (error) {
       toast.error(error.message);
+      return null;
     } finally {
       setLoading(false);
     }
