@@ -14,9 +14,11 @@ export const SocketContextProvider = ({ children }) => {
   const { user } = useAuth();
 
   useEffect(() => {
+    let newSocket = null;
+    
     if (user) {
       // Connect to socket server
-      const newSocket = io("http://localhost:5000", {
+      newSocket = io("http://localhost:5000", {
         query: {
           userId: user._id,
         },
@@ -28,19 +30,18 @@ export const SocketContextProvider = ({ children }) => {
       newSocket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
-
-      // Cleanup on unmount
-      return () => {
+    }
+    
+    // Cleanup function
+    return () => {
+      if (newSocket) {
         newSocket.close();
-        setSocket(null);
-      };
-    } else {
-      // If user logs out, close socket connection
+      }
       if (socket) {
         socket.close();
         setSocket(null);
       }
-    }
+    };
   }, [user]);
 
   return (

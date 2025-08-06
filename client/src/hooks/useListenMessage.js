@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useSocketContext } from "../Context/SocketContext";
 
 const useListenMessage = (setMessages) => {
-  const { socket } = useSocketContext();
+  const socketContext = useSocketContext();
+  const socket = socketContext?.socket;
 
   useEffect(() => {
     if (!socket) return;

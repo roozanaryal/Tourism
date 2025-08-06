@@ -5,7 +5,8 @@ import { useSocketContext } from "../Context/SocketContext";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
-  const { socket } = useSocketContext();
+  const socketContext = useSocketContext();
+  const socket = socketContext?.socket;
 
   const sendMessage = async (message, receiverId) => {
     setLoading(true);
