@@ -49,13 +49,14 @@ export default function Navbar({ transparent = false }) {
         className={`w-full z-20 ${navBgClass}`}
         style={{ transition: "background 0.3s" }}
       >
-        <ul className="flex justify-start cursor-pointer items-center px-24 gap-5 h-16 font-semibold">
-          <NavLink to="/">
-            <img className="h-14 w-24 " src={logo} alt="Logo" />
-          </NavLink>
-          {NAV_LINKS.map((nav) => {
-            return (
-              <li className="" key={nav.id}>
+        <div className="flex items-center justify-between px-24 h-16">
+          {/* Left: Logo and Nav Links */}
+          <ul className="flex items-center gap-5 font-semibold">
+            <NavLink to="/">
+              <img className="h-14 w-24" src={logo} alt="Logo" />
+            </NavLink>
+            {NAV_LINKS.map((nav) => (
+              <li key={nav.id}>
                 <NavLink
                   to={nav.path}
                   className={({ isActive }) =>
@@ -67,12 +68,10 @@ export default function Navbar({ transparent = false }) {
                   {nav.label}
                 </NavLink>
               </li>
-            );
-          })}
-          {user ? (
-            <>
-              {user.isAdmin && (
-                <>
+            ))}
+            {user ? (
+              <>
+                {user.isAdmin && (
                   <li>
                     <button
                       onClick={() => setShowAddPostModal(true)}
@@ -81,30 +80,33 @@ export default function Navbar({ transparent = false }) {
                       Add Post
                     </button>
                   </li>
-                </>
-              )}
+                )}
+                <li
+                  onClick={handleLogout}
+                  className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer"
+                >
+                  Logout
+                </li>
+              </>
+            ) : (
               <li
-                onClick={handleLogout}
+                onClick={() => setShowLoginModal(true)}
                 className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer"
               >
-                Logout
+                Login/Register
               </li>
-              <li>
-                <IoIosNotificationsOutline 
-                  className="text-2xl text-white cursor-pointer" 
-                  onClick={() => setShowNotificationModal(true)}
-                />
-              </li>
-            </>
-          ) : (
-            <li
-              onClick={() => setShowLoginModal(true)}
-              className="nav-link text-white transition-colors hover:text-primarycolor cursor-pointer"
-            >
-              Login/Register
-            </li>
+            )}
+          </ul>
+          {/* Right: Notification Icon */}
+          {user && !user.isAdmin && (
+            <div>
+              <IoIosNotificationsOutline
+                className="text-2xl text-white cursor-pointer"
+                onClick={() => setShowNotificationModal(true)}
+              />
+            </div>
           )}
-        </ul>
+        </div>
       </nav>
       <LoginSignup showModal={showLoginModal} onClose={handleCloseLoginModal} />
       <AddPostModal
