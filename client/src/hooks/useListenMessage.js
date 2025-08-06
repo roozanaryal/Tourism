@@ -9,7 +9,7 @@ const useListenMessage = (setMessages) => {
     
     const handleNewMessage = (newMessage) => {
       setMessages(prevMessages => [...prevMessages, newMessage]);
-    };-
+    };
 
     socket.on("receiveMessage", handleNewMessage);
     

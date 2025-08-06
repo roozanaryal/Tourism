@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-import { generateTokenAndSetCookie } from "../utils/generateToken.js";
+import { generateToken } from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
   try {
@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
 
     if (newUser) {
       await newUser.save();
-      const token = generateTokenAndSetCookie(newUser._id, res);
+      const token = generateToken(newUser._id);
 
       res.status(201).json({
         _id: newUser._id,
@@ -83,7 +83,7 @@ export const login = async (req, res) => {
       });
     }
 
-    const token = generateTokenAndSetCookie(user._id, res);
+    const token = generateToken(user._id);
 
     res.status(200).json({
       message: "Login successful",
@@ -105,7 +105,6 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
-        res.clearCookie("jwt");
         res.status(200).json({
             message: "Logout successful",
             success: true,
