@@ -1,6 +1,6 @@
 import { useState } from "react";
 import baseURL from "../Constants/baseURL";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useSocketContext } from "../Context/SocketContext";
 
 const useSendMessage = () => {

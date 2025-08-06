@@ -2,7 +2,7 @@ import { FiPaperclip } from 'react-icons/fi';
 import { BsEmojiSmile } from 'react-icons/bs';
 import { IoIosSend } from 'react-icons/io';
 import { useState } from 'react';
-import useSendMessage from '../../hooks/useSendMessage';
+import useSendMessage from '../../../hooks/useSendMessage';
 import PropTypes from 'prop-types';
 
 const MessageInput = ({ receiverId }) => {
