@@ -10,7 +10,9 @@ import { SocketContextProvider } from "./Context/SocketContext.jsx";
 createRoot(document.getElementById("root")).render(
    <StrictMode>
       <AuthProvider>
-         <RouterProvider router={router}/>
+         <SocketContextProvider>
+            <RouterProvider router={router}/>
+         </SocketContextProvider>
       </AuthProvider>
    </StrictMode>
 );

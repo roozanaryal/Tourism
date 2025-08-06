@@ -2,12 +2,14 @@ import { RiGlobalFill } from "react-icons/ri";
 import { IoSearch, IoClose } from "react-icons/io5";
 import { HiOutlineStatusOnline } from "react-icons/hi";
 import { useState, useRef, useEffect } from 'react';
+import { useSocketContext } from '../../Context/SocketContext';
 
 function CommunityHead() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef(null);
   const searchContainerRef = useRef(null);
+  const { onlineUsers } = useSocketContext();
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -43,7 +45,7 @@ function CommunityHead() {
         </div>
         <div className="flex flex-col">
           <div className="font-semibold text-lg text-gray-800 group-hover:text-primarycolor transition-colors duration-200">Global Chat</div>
-          <div className="text-sm text-gray-600">5 users online</div>
+          <div className="text-sm text-gray-600">Online: {onlineUsers?.length || 0}</div>
         </div>
       </div>
       

@@ -3,9 +3,8 @@ import { BsEmojiSmile } from 'react-icons/bs';
 import { IoIosSend } from 'react-icons/io';
 import { useState } from 'react';
 import useSendMessage from '../../../hooks/useSendMessage';
-import PropTypes from 'prop-types';
 
-const MessageInput = ({ receiverId }) => {
+const MessageInput = () => {
   const [message, setMessage] = useState('');
   const { sendMessage, loading } = useSendMessage();
 
@@ -13,7 +12,8 @@ const MessageInput = ({ receiverId }) => {
     e.preventDefault();
     if (!message.trim()) return;
     
-    const result = await sendMessage(message, receiverId);
+    // For community chat, we don't need a specific receiverId
+    const result = await sendMessage(message);
     if (result) {
       setMessage('');
     }
@@ -50,8 +50,6 @@ const MessageInput = ({ receiverId }) => {
   );
 };
 
-MessageInput.propTypes = {
-  receiverId: PropTypes.string
-};
+MessageInput.propTypes = {};
 
 export default MessageInput;

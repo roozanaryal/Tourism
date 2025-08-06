@@ -20,7 +20,7 @@ function Community() {
         <Navbar transparent />
       </div>
 
-      <main className="relative z-10 w-full max-w-5xl h-[calc(100vh-120px)] mt-20 bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-white/20">
+      <main className="relative z-10 w-full max-w-5xl h-[calc(100vh-120px)] mt-20 bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-white/20 mx-auto">
         <CommunityHead />
         <ChatWindow />
         <MessageInput />

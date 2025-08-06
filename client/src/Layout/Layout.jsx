@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom'
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
@@ -6,6 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Layout() {
   const location = useLocation();
+  
+  // Scroll to top when location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   
   // Pages that have their own transparent navbar and shouldn't show the global navbar
   const pagesWithoutGlobalNavbar = ['/', '/guides', '/attraction', '/contact', '/community'];

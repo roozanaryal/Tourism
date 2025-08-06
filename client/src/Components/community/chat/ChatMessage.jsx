@@ -15,7 +15,7 @@ const ChatMessage = ({ avatar, name, time, message, isSender }) => {
           <span className="text-xs text-gray-400">{time}</span>
           {isSender && <span className="font-semibold text-sm">You</span>}
         </div>
-        <div className={`mt-1 p-2 rounded-lg max-w-xs text-sm ${isSender ? 'bg-primarycolor text-white' : 'bg-gray-200'}`}>
+        <div className={`mt-1 p-2 rounded-lg max-w-[80%] text-sm ${isSender ? 'bg-primarycolor text-white' : 'bg-gray-200'}`}>
           {message}
         </div>
       </div>

@@ -5,29 +5,33 @@
 /* Custom Scrollbar */
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  scrollbar-width: none;
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  display: none;
 }
 
-*::-webkit-scrollbar-track {
+/* Keep scrollbars for chat window */
+.overflow-y-auto::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 4px;
 }
 
-*::-webkit-scrollbar-thumb {
+.overflow-y-auto::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
-*::-webkit-scrollbar-thumb:hover {
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -48,12 +52,35 @@ body {
 
 /* Smooth hover effect for buttons, links, and cards */
 a, button, .card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
 }
 
-a:hover, button:hover, .card:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+a:hover, .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Prevent horizontal overflow */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family:"Poppins", system-ui;
+}
+
+/* Ensure images and other media don't cause overflow */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Fade-in-up entrance animation (used on Contact page) */

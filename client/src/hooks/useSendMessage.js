@@ -1,5 +1,4 @@
 import { useState } from "react";
-import baseURL from "../Constants/baseURL";
 import { toast } from "react-toastify";
 import { useSocketContext } from "../Context/SocketContext";
 
@@ -8,34 +7,23 @@ const useSendMessage = () => {
   const socketContext = useSocketContext();
   const socket = socketContext?.socket;
 
-  const sendMessage = async (message, receiverId) => {
+  const sendMessage = async (message) => {
     setLoading(true);
     try {
+      // Get sender details from localStorage
+      const currentUser = JSON.parse(localStorage.getItem("neptour-user"));
+      const senderId = currentUser._id;
+      
       // Send message through socket for real-time delivery
       if (socket) {
         socket.emit("sendMessage", {
-          senderId: JSON.parse(localStorage.getItem("neptour-user"))._id,
-          receiverId,
+          senderId,
           message
         });
       }
       
-      // Also save to database
-      const res = await fetch(`${baseURL}/messages/send`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("neptour-token")}`
-        },
-        body: JSON.stringify({ message }),
-      });
-      
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || "Failed to send Message");
-      }
-      
-      return data;
+      // Return a success response
+      return { success: true };
     } catch (error) {
       toast.error(error.message);
       return null;

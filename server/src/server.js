@@ -10,6 +10,7 @@ import bookingRoute from "./routes/guidebooking.route.js";
 import contactRoute from "./routes/contact.route.js";
 // import searchRoute from "./routes/search.route.js";
 import http from "http";
+import Message from "./models/message.model.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -47,17 +48,25 @@ io.on('connection', (socket) => {
   }
   
   // Handle sending message
-  socket.on('sendMessage', (data) => {
-    const { senderId, receiverId, message } = data;
+  socket.on('sendMessage', async (data) => {
+    const { senderId, message } = data;
     
-    // Find receiver's socket
-    const receiver = onlineUsers.find(user => user.userId === receiverId);
-    
-    if (receiver) {
-      io.to(receiver.socketId).emit('receiveMessage', {
-        senderId,
-        message
+    // Save the message to database
+    try {
+      const newMessage = new Message({
+        sender: senderId,
+        message: message
       });
+      
+      const savedMessage = await newMessage.save();
+      
+      // Populate the sender details
+      await savedMessage.populate('sender', 'username');
+      
+      // Broadcast the complete message object to all users including the sender
+      io.emit('receiveMessage', savedMessage);
+    } catch (error) {
+      console.error('Error saving message:', error);
     }
   });
   
