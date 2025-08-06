@@ -1,35 +1,48 @@
-import { Children, useEffect, useState } from "react";
-import { useAuthContext } from "./AuthContext";
+import { useEffect, useState, createContext, useContext } from "react";
+import { useAuth } from "./AuthContext";
+import { io } from "socket.io-client";
+
 const SocketContext = createContext();
 
 export const useSocketContext = () => {
   return useContext(SocketContext);
 };
 
-export const SocketContextProvider = ({ Children }) => {
-  const [onlineUser, setOnlineUser] = useState([]);
+export const SocketContextProvider = ({ children }) => {
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [socket, setSocket] = useState(null);
-  const { authUser } = useAuthContext();
+  const { user } = useAuth();
 
   useEffect(() => {
-    if (authUser) {
-      const socket = io("http://localhost:5173", {
+    if (user) {
+      // Connect to socket server
+      const newSocket = io("http://localhost:5000", {
         query: {
-          userId: authUser._id,
+          userId: user._id,
         },
       });
-      setSocket(socket);
-      socket.on("getOnlineUser", (users) => {
-        setOnlineUser(users);
+
+      setSocket(newSocket);
+
+      // Listen for online users
+      newSocket.on("getOnlineUsers", (users) => {
+        setOnlineUsers(users);
       });
-      return () => socket.close();
+
+      // Cleanup on unmount
+      return () => {
+        newSocket.close();
+        setSocket(null);
+      };
     } else {
+      // If user logs out, close socket connection
       if (socket) {
         socket.close();
         setSocket(null);
       }
     }
-  }, [authUser]);
+  }, [user]);
+
   return (
     <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}

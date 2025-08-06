@@ -10,10 +10,10 @@ const useGetMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(`${baseURL}/messages/get`, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${localStorage.getItem("neptour-token")}`,
         },
       });
       const data = await res.json();
@@ -30,12 +30,14 @@ const useGetMessage = () => {
       return data;
     } catch (error) {
       toast.error(error.message);
+      setMessages([]);
+      return [];
     } finally {
       setLoading(false);
     }
   };
 
-  return { loading, messages, getMessage };
+  return { loading, messages, getMessage, setMessages };
 };
 
 export default useGetMessage;
