@@ -98,7 +98,7 @@ export default function Navbar({ transparent = false }) {
             )}
           </ul>
           {/* Right: Notification Icon */}
-          {user && !user.isAdmin && (
+          {user && (
             <div>
               <IoIosNotificationsOutline
                 className="text-2xl text-white cursor-pointer"
