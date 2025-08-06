@@ -1,4 +1,16 @@
 import Booking from "../models/booking.model.js";
+// Get all booking notifications (most recent first)
+export const getBookingNotifications = async (req, res) => {
+  try {
+    const notifications = await Booking.find({})
+      .sort({ createdAt: -1 })
+      .limit(50);
+    res.status(200).json(notifications);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch notifications', error: error.message });
+  }
+};
+
 // Book a guide and store guideName and userEmail
 export const bookGuide = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
@@ -7,6 +7,7 @@ import LoginSignup from "../Pages/LoginSignup";
 import AddPostModal from "../Components/AddPostModal";
 import { useAuth } from "../Context/AuthContext";
 import useLogout from "../hooks/useLogout";
+import useGetNotifications from "../hooks/useGetNotifications";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import NotificationModal from "./NotificationModal";
 
@@ -20,13 +21,20 @@ export default function Navbar({ transparent = false }) {
   const [showNotificationModal, setShowNotificationModal] = useState(false);
   const { user } = useAuth();
   const { logout } = useLogout();
+  const { getNotifications, notifications } = useGetNotifications();
 
-  const handleCloseLoginModal = () => {
-    setShowLoginModal(false);
-  };
+  useEffect(() => {
+    if (showNotificationModal) {
+      getNotifications();
+    }
+  }, [showNotificationModal, getNotifications]);
 
   const handleCloseNotificationModal = () => {
     setShowNotificationModal(false);
+  };
+
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
   };
 
   const handleCloseAddPostModal = () => {
@@ -97,13 +105,20 @@ export default function Navbar({ transparent = false }) {
               </li>
             )}
           </ul>
-          {/* Right: Notification Icon */}
-          {user && (
+          {/* Right: Notification Icon (Admins only) */}
+          {user && user.isAdmin && (
             <div>
               <IoIosNotificationsOutline
-                className="text-2xl text-white cursor-pointer"
+                className="text-2xl text-white cursor-pointer hover:text-primarycolor transition-colors"
                 onClick={() => setShowNotificationModal(true)}
               />
+              {showNotificationModal && (
+                <NotificationModal
+                  showModal={showNotificationModal}
+                  onClose={handleCloseNotificationModal}
+                  notifications={notifications}
+                />
+              )}
             </div>
           )}
         </div>
@@ -113,10 +128,6 @@ export default function Navbar({ transparent = false }) {
         showModal={showAddPostModal}
         onClose={handleCloseAddPostModal}
       />
-      <NotificationModal
-        showModal={showNotificationModal}
-        onClose={handleCloseNotificationModal}
-      />  
     </>
   );
 }
