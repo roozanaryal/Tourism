@@ -32,8 +32,22 @@ const io = new Server(server, {
 // Store online users
 let onlineUsers = [];
 
+// Limit concurrent connections
+let connectionCount = 0;
+const MAX_CONNECTIONS = 100;
+
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
+  connectionCount++;
+  
+  // Check connection limit
+  if (connectionCount > MAX_CONNECTIONS) {
+    console.log('Max connections reached. Disconnecting client:', socket.id);
+    socket.disconnect();
+    connectionCount--;
+    return;
+  }
+
+  console.log('User connected:', socket.id, `(${connectionCount} total connections)`);
   
   // Get userId from query params
   const userId = socket.handshake.query.userId;
@@ -72,7 +86,8 @@ io.on('connection', (socket) => {
   
   // Handle disconnect
   socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
+    connectionCount--;
+    console.log('User disconnected:', socket.id, `(${connectionCount} total connections)`);
     onlineUsers = onlineUsers.filter(user => user.socketId !== socket.id);
     io.emit('getOnlineUsers', onlineUsers);
   });
@@ -85,9 +100,16 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+// Add request size limits to prevent memory issues
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
+
+// Add connection limit for Socket.io
+io.engine.generateId = (req) => {
+  return "custom:" + Math.random().toString(36).substr(2, 9);
+};
 
 //Routes
 app.use("/auth", authRoutes);

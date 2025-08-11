@@ -1,12 +1,9 @@
-import { useEffect, useState, createContext, useContext } from "react";
+import { useEffect, useState, createContext } from "react";
+import PropTypes from "prop-types";
 import { useAuth } from "./AuthContext";
 import { io } from "socket.io-client";
 
 const SocketContext = createContext();
-
-export const useSocketContext = () => {
-  return useContext(SocketContext);
-};
 
 export const SocketContextProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -30,16 +27,20 @@ export const SocketContextProvider = ({ children }) => {
       newSocket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
+    } else {
+      // If no user, clean up socket
+      setSocket((prevSocket) => {
+        if (prevSocket) {
+          prevSocket.close();
+        }
+        return null;
+      });
     }
     
     // Cleanup function
     return () => {
       if (newSocket) {
         newSocket.close();
-      }
-      if (socket) {
-        socket.close();
-        setSocket(null);
       }
     };
   }, [user]);
@@ -49,4 +50,9 @@ export const SocketContextProvider = ({ children }) => {
       {children}
     </SocketContext.Provider>
   );
+};
+
+// Add PropTypes validation
+SocketContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

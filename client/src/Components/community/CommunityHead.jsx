@@ -2,7 +2,7 @@ import { RiGlobalFill } from "react-icons/ri";
 import { IoSearch, IoClose } from "react-icons/io5";
 import { HiOutlineStatusOnline } from "react-icons/hi";
 import { useState, useRef, useEffect } from 'react';
-import { useSocketContext } from '../../Context/SocketContext';
+import { useSocketContext } from '../../hooks/useSocketContext';
 
 function CommunityHead() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);

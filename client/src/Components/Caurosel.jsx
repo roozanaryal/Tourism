@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,11 +37,18 @@ const Caurosel = ({ slides }) => {
    const ref = useRef(null);
 
    useEffect(() => {
+      // Don't start interval if no slides
+      if (!slides || slides.length === 0) {
+         return;
+      }
+
       const interval = setInterval(() => {
          setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
       }, 3000);
 
-      return () => clearInterval(interval);
+      return () => {
+         clearInterval(interval);
+      };
    }, [slides]);
 
    return (
@@ -101,6 +109,17 @@ const Caurosel = ({ slides }) => {
          </div>
       </div>
    );
+};
+
+Caurosel.propTypes = {
+   slides: PropTypes.arrayOf(
+      PropTypes.shape({
+         description: PropTypes.string,
+         image: PropTypes.string,
+         name: PropTypes.string,
+         address: PropTypes.string,
+      })
+   ).isRequired,
 };
 
 export default Caurosel;

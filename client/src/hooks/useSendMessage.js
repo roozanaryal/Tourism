@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useSocketContext } from "../Context/SocketContext";
+import { useSocketContext } from "./useSocketContext";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import useGetMessage from '../../../hooks/useGetMessage';
-import { useSocketContext } from '../../../Context/SocketContext';
+import { useSocketContext } from '../../../hooks/useSocketContext';
 
 const ChatWindow = () => {
   const { messages: backendMessages, loading, getMessage } = useGetMessage();
