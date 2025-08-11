@@ -56,3 +56,5 @@ export const SocketContextProvider = ({ children }) => {
 SocketContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export { SocketContext };
