@@ -8,7 +8,7 @@ import messageRoutes from "./routes/message.route.js";
 import postRoutes from "./routes/post.route.js";
 import bookingRoute from "./routes/guidebooking.route.js";
 import contactRoute from "./routes/contact.route.js";
-// import searchRoute from "./routes/search.route.js";
+import searchRoute from "./routes/search.route.js";
 import http from "http";
 import Message from "./models/message.model.js";
 
@@ -116,7 +116,7 @@ app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
 app.use("/post", postRoutes);
 app.use("/bookguide",bookingRoute);
-// app.use("/search", searchRoute);
+app.use("/search", searchRoute);
 app.use("/contact",contactRoute)
 const startServer = async () => {
   try {

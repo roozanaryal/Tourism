@@ -84,7 +84,7 @@ export default function Footer() {
                </div>
                <p className="w-full font-light text-sm md:mt-7 mt-4 text-start ">
                   Discover breathtaking landscapes, rich cultural heritage, and
-                  unforgettable adventures. Whether you're seeking high-altitude
+                  unforgettable adventures. Whether you&apos;re seeking high-altitude
                   treks , serene lakes, or ancient temples, we are here to guide
                   you through every step of your journey.{" "}
                </p>

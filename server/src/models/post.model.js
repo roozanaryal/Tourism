@@ -20,4 +20,8 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Indexes to speed up search by placename
+postSchema.index({ placename: 1 });
+postSchema.index({ placename: "text" });
+
 export default mongoose.model("Post", postSchema);
