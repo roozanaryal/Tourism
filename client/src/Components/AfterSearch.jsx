@@ -1,8 +1,10 @@
 import { FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 // Dropdown suggestions panel to render under the search input (Google-like)
 export default function AfterSearch({ suggestions = [], loading = false, error = null, onSelect = () => {} }) {
+  const navigate = useNavigate();
   const renderHighlighted = (txt, query) => {
     const q = query.trim();
     if (!q) return txt;
@@ -91,7 +93,13 @@ export default function AfterSearch({ suggestions = [], loading = false, error =
                 className="shrink-0 px-3 py-1.5 rounded-full bg-primarycolor text-white text-sm hover:bg-primarycolor/90"
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  onSelect(item.name);
+                  // Navigate to the same detail page used by Attraction cards
+                  if (item.id) {
+                    navigate(`/detail/${item.id}`);
+                  } else {
+                    // Fallback: still call onSelect to populate input if id is missing
+                    onSelect(item.name);
+                  }
                 }}
               >
                 Explore more

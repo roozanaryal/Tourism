@@ -18,8 +18,9 @@ export default function Search() {
 
    const handleFocus = () => {
       if (blurTimeout.current) clearTimeout(blurTimeout.current);
-      setOpen(true);
-      if (searchQuery.trim()) {
+      const hasText = !!searchQuery.trim();
+      setOpen(hasText);
+      if (hasText) {
          fetchSuggestions(searchQuery);
       }
    };
@@ -36,15 +37,17 @@ export default function Search() {
    const handleChange = (e) => {
       const value = e.target.value;
       setSearchQuery(value);
-      setOpen(true);
-      
+      const hasText = !!value.trim();
+      setOpen(hasText);
+
       // Debounce the API call
       if (blurTimeout.current) clearTimeout(blurTimeout.current);
       blurTimeout.current = setTimeout(() => {
-         if (value.trim()) {
+         if (hasText) {
             fetchSuggestions(value);
          } else {
-            // Clear suggestions when input is empty
+            // No text: ensure dropdown is closed
+            setOpen(false);
          }
       }, 300);
    };

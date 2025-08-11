@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Card_Home } from "../Constants/Constant";
+import all_product from "../assets/assets";
 
 // Default image if place not found
 const DEFAULT_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/512px-Placeholder_view_vector.svg.png";
@@ -34,17 +34,18 @@ export function useSearchSuggestions() {
       // Merge backend data with hardcoded images and additional info
       const lowerQuery = query.toLowerCase();
       const enrichedResults = data.map((item) => {
-        // Find matching constant for image
-        const match = Card_Home.find((c) =>
-          (c.label || "").toLowerCase() === (item.placename || "").toLowerCase()
+        // Match image exactly like Attraction page does (by name === placename)
+        const prod = all_product.find(
+          (p) => (p.name || "").toLowerCase() === (item.placename || "").toLowerCase()
         );
         
         return {
+          id: item._id,
           name: item.placename,
-          image: match ? match.image : DEFAULT_IMAGE,
+          image: prod ? prod.image : DEFAULT_IMAGE,
           review: item.review || 4.5, // Use backend review if available
           reviews: Math.floor(Math.random() * 200) + 50, // Mock reviews count
-          blurb: match ? match.description : "Beautiful place to visit",
+          blurb: "Beautiful place to visit",
           query: query, // Pass query for highlighting
         };
       });
